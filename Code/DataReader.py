@@ -6,12 +6,8 @@ from Utilities import getValidCategories
 # df = pd.read_csv("expenses.csv", encoding="ISO-8859-1")
 df = pd.read_csv("testWritingExpenses.csv", encoding="ISO-8859-1")
 
-price_column = df['Category']
-month_column = df['Month']
-description_column = df['Description']
-
 categories = getValidCategories()
-months = month_column.unique()
+months = df['Month'].unique()
 
 
 def m(amount):
@@ -58,7 +54,6 @@ categories_with_month = ['Month'] + categories
 
 def calculateMonthlyBreakdownPerCategory():
     array_For_Month = []
-    month_df = pd.DataFrame
     all_months_df = pd.DataFrame([], columns=categories_with_month)
     for month in months:
         array_For_Month.append(month)
@@ -74,17 +69,26 @@ def calculateMonthlyBreakdownPerCategory():
 
 monthly_breakdown = calculateMonthlyBreakdownPerCategory()
 
-totals_for_categories = list(totals_for_categories.values())
-averageValues = [round(x/len(months), 2)for x in totals_for_categories]
-average = ['Average'] + averageValues
-monthly_average = pd.DataFrame([average], columns=categories_with_month)
-monthly_breakdown = monthly_breakdown.append(monthly_average)
 
-total = ['Total'] + totals_for_categories
-categoryTotals = pd.DataFrame([total], columns=categories_with_month)
-monthly_breakdown = monthly_breakdown.append(categoryTotals)
+def addAverages(totals_for_categories, monthly_breakdown):
+    totals = list(totals_for_categories.values())
+    averageValues = [round(x / len(months), 2) for x in totals]
+    average = ['Average'] + averageValues
+    monthly_average = pd.DataFrame([average], columns=categories_with_month)
+    monthly_breakdown = monthly_breakdown.append(monthly_average)
+    return monthly_breakdown
+
+
+def addTotals(totals, monthly_breakdown):
+    totals_for_categories = list(totals.values())
+    total = ['Total'] + totals_for_categories
+    categoryTotals = pd.DataFrame([total], columns=categories_with_month)
+    monthly_breakdown = monthly_breakdown.append(categoryTotals)
+    return monthly_breakdown
+
+monthly_breakdown = addAverages(totals_for_categories,monthly_breakdown)
+monthly_breakdown = addTotals(totals_for_categories,monthly_breakdown)
 print(monthly_breakdown.to_string(index=False))
-
 # also all the EOM quantites (basically the 'Annual Salary' tab, which can be calculated on the fly.
 # need to maybe store the remaining balance bit? and new rows can store that.
 
@@ -95,5 +99,4 @@ print(monthly_breakdown.to_string(index=False))
 # or however else we want to represent it on the sheet so it does it for us.
 
 
-##TODO make this into different methods.
 ## TODO then make it possible to read certain months /or categories and all the variants like excel does
