@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$/Code/categories.txt" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/Code/expenses.csv" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/Code/shortExpenses.csv" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/Code/testWritingExpenses.csv" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/Code/veryShortExpenses.csv" charset="windows-1252" />
+  </component>
+</project>
