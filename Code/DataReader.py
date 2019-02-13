@@ -14,22 +14,45 @@ def m(amount):
     return Money(amount, 'GBP').format('en_GB')
 
 
-def sumExpenseseByCategory(dataframe, categories):
+def sum(column):
+    column_sum = column['Amount'].astype(float).sum(0)
+    return column_sum
+
+
+def getExpensesForCategoryForMonth(category, month):
+    return df.loc[(df['Category'] == category) & (df['Month'] == month)]
+
+
+def getExpensesForCategoryForYear(category, year):
+    return df.loc[(df['Category'] == category) & (df['Year'] == year)]
+
+
+def getExpensesForMonth(month):
+    return df.loc[(df['Month'] == month)]
+
+
+def getExpensesForCategory(category):
+    return df.loc[(df['Category'] == category)]
+
+
+def getExpensesForYear(year):
+    return df.loc[(df['Year'] == year)]
+
+def getExpenses():
+    return df
+
+
+def sumExpenseseByCategory():
     totals = {}
     for category in categories:
-        # Find rows which match the current category
-        column = dataframe.loc[dataframe['Category'] == category]
-        # Sum them up
+        column = df.loc[df['Category'] == category]
         column_sum = column['Amount'].astype(float).sum(0)
-        # print(category + ": " + str(m(round(column_sum, 2))))
-        # Add the monthly total to the map
         totals.update({category: column_sum})
 
     return totals
 
 
-totals_for_categories = sumExpenseseByCategory(df, categories)
-
+totals_for_categories = sumExpenseseByCategory()
 
 def getTotalExpenditure(totals_for_categories):
     total_expenditure = sum(totals_for_categories.values())
@@ -89,11 +112,12 @@ def addTotals(totals, monthly_breakdown):
 monthly_breakdown = addAverages(totals_for_categories,monthly_breakdown)
 monthly_breakdown = addTotals(totals_for_categories,monthly_breakdown)
 print(monthly_breakdown.to_string(index=False))
+
+
 # also all the EOM quantites (basically the 'Annual Salary' tab, which can be calculated on the fly.
 # need to maybe store the remaining balance bit? and new rows can store that.
 
 
-# should we write the summary data to a results page so it doesnt need to be recauclated each time?
 # try and make a GUI to display this info
 # can do the EOM quantities. will need to add columns to the csv which can store things like (extra money)
 # or however else we want to represent it on the sheet so it does it for us.

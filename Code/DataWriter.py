@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 def createExpenseLine(month, year, amount, category, description):
-    if category not in categories:
+    if category not in getValidCategories():
         raise ValueError('Category is not valid')
 
     return month + ' ' + str(year)[2:] + ',' \
@@ -16,7 +16,7 @@ def createExpenseLine(month, year, amount, category, description):
 
 
 def createExpenseLineForCurrentMonth(amount, category, description):
-    return createExpenseLine(currentMonth, currentYear, amount, category, description)
+    return createExpenseLine(datetime.now().strftime('%B'), datetime.now().year, amount, category, description)
 
 
 def writeExpenseToFile(expense):
@@ -24,15 +24,3 @@ def writeExpenseToFile(expense):
         f.write(str(expense))
         f.write('\n')
         print('Written expense to csv: ' + expense)
-
-
-currentMonth = datetime.now().strftime('%B')
-currentYear = datetime.now().year
-
-categories = getValidCategories()
-
-line = createExpenseLine(currentMonth, currentYear, 100, 'Jemma', 'blobby')
-writeExpenseToFile(line)
-
-# TODO maybe store remaining balance as it makes debugging easier.
-
