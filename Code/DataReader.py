@@ -9,6 +9,8 @@ df = pd.read_csv("testWritingExpenses.csv", encoding="ISO-8859-1")
 categories = getValidCategories()
 months = df['Month'].unique()
 
+# The next thing is to get monthly breakdowns.
+categories_with_month = ['Month'] + categories
 
 def m(amount):
     return Money(amount, 'GBP').format('en_GB')
@@ -38,7 +40,7 @@ def getExpensesForCategory(category):
 def getExpensesForYear(year):
     return df.loc[(df['Year'] == year)]
 
-def getExpenses():
+def getAllExpenses():
     return df
 
 #  TODO maybe we can add averages and totals for the expense retriever.
@@ -46,6 +48,11 @@ def getExpenses():
 #TODO find x most expensive entries for a category for example.
 #TODO find most expsenses for most expensive motnh for category?
 
+#this will take a dataframe from above for example and sort it out.
+def highestXExpenses():
+    return 0
+
+#TODO this could take a df?
 def sumExpenseseByCategory():
     totals = {}
     for category in categories:
@@ -56,10 +63,14 @@ def sumExpenseseByCategory():
     return totals
 
 
+
+##TODO desired pattern; getAllExpenses().addAverages().addTotals().print
+##TODO desired pattern; getExpensesForCategoryForMonth(Jemma, January 19).addTotals().print
+
 totals_for_categories = sumExpenseseByCategory()
 
 def getTotalExpenditure():
-    total_expenditure = sum(sumExpenseseByCategory().values())
+    total_expenditure = sumColumn(getAllExpenses())
     return total_expenditure
 
 
@@ -75,18 +86,14 @@ def displayNetWealth():
     return net_wealth
 
 
-# The next thing is to get monthly breakdowns.
-categories_with_month = ['Month'] + categories
-
-
-def calculateMonthlyBreakdownPerCategory():
+def calculateMonthlyBreakdownPerCategory(dataFrame):
     array_For_Month = []
     all_months_df = pd.DataFrame([], columns=categories_with_month)
     for month in months:
         array_For_Month.append(month)
         for category in categories:
             # For each category, go through each month..
-            column = df.loc[(df['Category'] == category) & (df['Month'] == month)]
+            column = dataFrame.loc[(dataFrame['Category'] == category) & (dataFrame['Month'] == month)]
             column_sum = round(column['Amount'].astype(float).sum(0), 2)
             array_For_Month.append(column_sum)
         month_df = pd.DataFrame([array_For_Month], columns=categories_with_month)
@@ -94,9 +101,9 @@ def calculateMonthlyBreakdownPerCategory():
         all_months_df = all_months_df.append(month_df)
     return all_months_df
 
-monthly_breakdown = calculateMonthlyBreakdownPerCategory()
+monthly_breakdown = calculateMonthlyBreakdownPerCategory(getAllExpenses())
 
-
+#TODO these should just take a dataframe really.
 def addAverages(totals_for_categories, monthly_breakdown):
     totals = list(totals_for_categories.values())
     averageValues = [round(x / len(months), 2) for x in totals]
