@@ -14,7 +14,7 @@ def m(amount):
     return Money(amount, 'GBP').format('en_GB')
 
 
-def sum(column):
+def sumColumn(column):
     column_sum = column['Amount'].astype(float).sum(0)
     return column_sum
 
@@ -41,6 +41,10 @@ def getExpensesForYear(year):
 def getExpenses():
     return df
 
+#  TODO maybe we can add averages and totals for the expense retriever.
+
+#TODO find x most expensive entries for a category for example.
+#TODO find most expsenses for most expensive motnh for category?
 
 def sumExpenseseByCategory():
     totals = {}
@@ -54,19 +58,19 @@ def sumExpenseseByCategory():
 
 totals_for_categories = sumExpenseseByCategory()
 
-def getTotalExpenditure(totals_for_categories):
-    total_expenditure = sum(totals_for_categories.values())
+def getTotalExpenditure():
+    total_expenditure = sum(sumExpenseseByCategory().values())
     return total_expenditure
 
 
-def displayAccountBalance(total_expenditure):
-    account_balance = round(3285.93 - 15000 - 20000 - total_expenditure, 2)
+def displayAccountBalance():
+    account_balance = round(3285.93 - 15000 - 20000 - getTotalExpenditure(), 2)
     print("Account balance is " + str(m(account_balance)))
     return account_balance
 
 
-def displayNetWealth(account_balance):
-    net_wealth = round(46046.61 + 20000 + account_balance, 2)
+def displayNetWealth():
+    net_wealth = round(46046.61 + 20000 + displayAccountBalance(), 2)
     print("Net wealth is " + str(m(net_wealth)))
     return net_wealth
 
@@ -98,16 +102,16 @@ def addAverages(totals_for_categories, monthly_breakdown):
     averageValues = [round(x / len(months), 2) for x in totals]
     average = ['Average'] + averageValues
     monthly_average = pd.DataFrame([average], columns=categories_with_month)
-    monthly_breakdown = monthly_breakdown.append(monthly_average)
-    return monthly_breakdown
+    mb = monthly_breakdown.append(monthly_average)
+    return mb
 
 
 def addTotals(totals, monthly_breakdown):
     totals_for_categories = list(totals.values())
     total = ['Total'] + totals_for_categories
     categoryTotals = pd.DataFrame([total], columns=categories_with_month)
-    monthly_breakdown = monthly_breakdown.append(categoryTotals)
-    return monthly_breakdown
+    mb = monthly_breakdown.append(categoryTotals)
+    return mb
 
 monthly_breakdown = addAverages(totals_for_categories,monthly_breakdown)
 monthly_breakdown = addTotals(totals_for_categories,monthly_breakdown)

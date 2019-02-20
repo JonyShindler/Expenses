@@ -4,7 +4,6 @@
     <list default="true" id="3f25a5e2-e5bd-4ba0-a397-b86319d862f7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/DataReader.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/DataReader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Code/DataWriter.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/DataWriter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/QueryRunner.py" beforeDir="false" afterPath="$PROJECT_DIR$/Code/QueryRunner.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Code/testWritingExpenses.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Code/testWritingExpenses.csv" afterDir="false" />
     </list>
@@ -17,24 +16,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Code/QueryRunner.py">
+        <entry file="file://$PROJECT_DIR$/Code/DataReader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="508">
+              <caret line="113" column="13" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
               <folding>
-                <element signature="e#0#55#0" expanded="true" />
+                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Code/DataReader.py">
+        <entry file="file://$PROJECT_DIR$/Code/QueryRunner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="113" selection-start-line="113" selection-end-line="113" />
+            <state relative-caret-position="150">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
               <folding>
-                <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#0#55#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -52,7 +51,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/DataWriter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
+            <state relative-caret-position="575">
               <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
@@ -64,7 +63,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Code/testWritingExpenses.csv">
           <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="-19">
+            <state relative-caret-position="24025">
               <caret line="961" column="9" lean-forward="true" selection-start-line="961" selection-start-column="9" selection-end-line="961" selection-end-column="9" />
             </state>
           </provider>
@@ -109,9 +108,9 @@
         <option value="$PROJECT_DIR$/Code/categories.txt" />
         <option value="$PROJECT_DIR$/Code/data.csv" />
         <option value="$PROJECT_DIR$/Code/Utilities.py" />
-        <option value="$PROJECT_DIR$/Code/QueryRunner.py" />
         <option value="$PROJECT_DIR$/Code/testWritingExpenses.csv" />
         <option value="$PROJECT_DIR$/Code/DataWriter.py" />
+        <option value="$PROJECT_DIR$/Code/QueryRunner.py" />
         <option value="$PROJECT_DIR$/Code/DataReader.py" />
       </list>
     </option>
@@ -128,6 +127,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -144,7 +144,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -279,11 +278,19 @@
       <option name="project" value="LOCAL" />
       <updated>1550005968108</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added querying methods">
+      <created>1550093176174</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1550093176174</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973656" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -309,7 +316,8 @@
     <MESSAGE value="Test commit 2" />
     <MESSAGE value="Test commit 3" />
     <MESSAGE value="Test commit 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test commit 4" />
+    <MESSAGE value="Added querying methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added querying methods" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../Scratch/venv/Lib/site-packages/pandas/__init__.py">
@@ -391,6 +399,33 @@
     <entry file="file://$PROJECT_DIR$/Code/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/../Scratch/venv/Lib/site-packages/pandas/core/ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="1648" selection-start-line="1648" selection-end-line="1648" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/DataWriter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Code/testWritingExpenses.csv">
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="24025">
+          <caret line="961" column="9" lean-forward="true" selection-start-line="961" selection-start-column="9" selection-end-line="961" selection-end-column="9" />
+        </state>
+      </provider>
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Code/categories.txt">
       <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="csv-text-editor" />
@@ -405,49 +440,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Scratch/venv/Lib/site-packages/pandas/core/ops.py">
+    <entry file="file://$PROJECT_DIR$/Code/QueryRunner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="1648" selection-start-line="1648" selection-end-line="1648" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Code/testWritingExpenses.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="-19">
-          <caret line="961" column="9" lean-forward="true" selection-start-line="961" selection-start-column="9" selection-end-line="961" selection-end-column="9" />
-        </state>
-      </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Code/DataWriter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="150">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
           <folding>
-            <element signature="e#0#40#0" expanded="true" />
+            <element signature="e#0#55#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Code/DataReader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="113" selection-start-line="113" selection-end-line="113" />
+        <state relative-caret-position="508">
+          <caret line="113" column="13" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Code/QueryRunner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
           </folding>
         </state>
       </provider>
