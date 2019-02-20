@@ -49,14 +49,13 @@ def getAllExpenses():
 #TODO find most expsenses for most expensive motnh for category?
 
 #this will take a dataframe from above for example and sort it out.
-def highestXExpenses():
+def highestXExpenses(dataFrame, n):
     return 0
 
-#TODO this could take a df?
-def sumExpenseseByCategory():
+def sumExpenseseByCategory(dataFrame):
     totals = {}
     for category in categories:
-        column = df.loc[df['Category'] == category]
+        column = dataFrame.loc[dataFrame['Category'] == category]
         column_sum = column['Amount'].astype(float).sum(0)
         totals.update({category: column_sum})
 
@@ -67,7 +66,7 @@ def sumExpenseseByCategory():
 ##TODO desired pattern; getAllExpenses().addAverages().addTotals().print
 ##TODO desired pattern; getExpensesForCategoryForMonth(Jemma, January 19).addTotals().print
 
-totals_for_categories = sumExpenseseByCategory()
+totals_for_categories = sumExpenseseByCategory(getAllExpenses())
 
 def getTotalExpenditure():
     total_expenditure = sumColumn(getAllExpenses())
@@ -85,8 +84,28 @@ def displayNetWealth():
     print("Net wealth is " + str(m(net_wealth)))
     return net_wealth
 
+def addAveragesForDataFrame(dataFrame):
+    return dataFrame
 
-def calculateMonthlyBreakdownPerCategory(dataFrame):
+
+#Note how a monthlyBreakdown is ready to print, whereas a dataFrame is just a limited view of the original csv.
+def addAverages(totals_for_categories, monthly_breakdown):
+    totals = list(totals_for_categories.values())
+    averageValues = [round(x / len(months), 2) for x in totals]
+    average = ['Average'] + averageValues
+    monthly_average = pd.DataFrame([average], columns=categories_with_month)
+    mb = monthly_breakdown.append(monthly_average)
+    return mb
+
+
+def addTotals(totals_for_categories, monthly_breakdown):
+    totals = list(totals_for_categories.values())
+    total = ['Total'] + totals
+    categoryTotals = pd.DataFrame([total], columns=categories_with_month)
+    mb = monthly_breakdown.append(categoryTotals)
+    return mb
+
+def calculateMonthlyBreakdownPerCategory(dataFrame, addAverage, addTotal):
     array_For_Month = []
     all_months_df = pd.DataFrame([], columns=categories_with_month)
     for month in months:
@@ -99,29 +118,17 @@ def calculateMonthlyBreakdownPerCategory(dataFrame):
         month_df = pd.DataFrame([array_For_Month], columns=categories_with_month)
         array_For_Month = []
         all_months_df = all_months_df.append(month_df)
+
+    if addAverage:
+        all_months_df = addAverages(totals_for_categories, all_months_df)
+    if addTotal:
+        all_months_df = addTotals(totals_for_categories, all_months_df)
     return all_months_df
 
-monthly_breakdown = calculateMonthlyBreakdownPerCategory(getAllExpenses())
+monthly_breakdown = calculateMonthlyBreakdownPerCategory(getAllExpenses(), True, True)
 
-#TODO these should just take a dataframe really.
-def addAverages(totals_for_categories, monthly_breakdown):
-    totals = list(totals_for_categories.values())
-    averageValues = [round(x / len(months), 2) for x in totals]
-    average = ['Average'] + averageValues
-    monthly_average = pd.DataFrame([average], columns=categories_with_month)
-    mb = monthly_breakdown.append(monthly_average)
-    return mb
-
-
-def addTotals(totals, monthly_breakdown):
-    totals_for_categories = list(totals.values())
-    total = ['Total'] + totals_for_categories
-    categoryTotals = pd.DataFrame([total], columns=categories_with_month)
-    mb = monthly_breakdown.append(categoryTotals)
-    return mb
-
-monthly_breakdown = addAverages(totals_for_categories,monthly_breakdown)
-monthly_breakdown = addTotals(totals_for_categories,monthly_breakdown)
+# monthly_breakdown = addAverages(totals_for_categories,monthly_breakdown)
+# monthly_breakdown = addTotals(totals_for_categories,monthly_breakdown)
 print(monthly_breakdown.to_string(index=False))
 
 
