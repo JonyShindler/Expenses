@@ -73,16 +73,15 @@ def getTotalExpenditure():
     return total_expenditure
 
 
-def displayAccountBalance():
+def calculateAccountBalance():
     account_balance = round(3285.93 - 15000 - 20000 - getTotalExpenditure(), 2)
-    print("Account balance is " + str(m(account_balance)))
     return account_balance
 
 
-def displayNetWealth():
-    net_wealth = round(46046.61 + 20000 + displayAccountBalance(), 2)
-    print("Net wealth is " + str(m(net_wealth)))
+def calculateNetWealth():
+    net_wealth = round(46046.61 + 20000 + 12000 + calculateAccountBalance(), 2)
     return net_wealth
+
 
 def addAveragesForDataFrame(dataFrame):
     return dataFrame
@@ -125,12 +124,16 @@ def calculateMonthlyBreakdownPerCategory(dataFrame, addAverage, addTotal):
         all_months_df = addTotals(totals_for_categories, all_months_df)
     return all_months_df
 
-monthly_breakdown = calculateMonthlyBreakdownPerCategory(getAllExpenses(), True, True)
+def printAccountBalance():
+    print("Account balance is " + str(m(calculateAccountBalance())))
 
-# monthly_breakdown = addAverages(totals_for_categories,monthly_breakdown)
-# monthly_breakdown = addTotals(totals_for_categories,monthly_breakdown)
-print(monthly_breakdown.to_string(index=False))
 
+def printNetWealth():
+    print("Net wealth is " + str(m(calculateNetWealth())))
+
+def printPivotChartWithAveragesAndTotals():
+    pivotChart = calculateMonthlyBreakdownPerCategory(getAllExpenses(), True, True)
+    print(pivotChart.to_string(index=False))
 
 # also all the EOM quantites (basically the 'Annual Salary' tab, which can be calculated on the fly.
 # need to maybe store the remaining balance bit? and new rows can store that.
